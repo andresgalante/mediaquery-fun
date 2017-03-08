@@ -1,0 +1,40 @@
+//Add .classbxr to any element to turn on annotations for it and its contents
+.classbxr,
+.classbxr * {
+  width: auto !important;
+  border: 1px solid cornflowerblue !important;
+  padding: .5em .25em .25em .25em !important;
+  margin: .5em .25em .25em .25em !important;
+  position: relative;
+  &:before {
+    content: '.' attr(class);
+    font-size: xx-small;
+    background-color: white;
+    color: cornflowerblue;
+    position: absolute;
+    top: -1.5ex;
+    white-space: nowrap;
+    font-family: sans-serif;
+  }
+  // Get nested elements down to a reasonable level
+  div {
+    border-color: pink !important;
+  }
+  div div {
+    border-color: purple !important;
+  }
+  div div div {
+    border-color: green !important;
+  }
+  div div div div {
+    border-color: orange !important;
+  }
+
+  // Add the element name for common elements
+  @each $element in div, span, ul, ol, li, dl, dd, dt, p, h1, h2, h3, h4, h5, h6 {
+   #{$element}:before {
+     content: '#{$element}.' attr(class);
+   }
+  }
+
+}
